@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Product detail</h1>
+    <p class="text-right">
+        <a class="btn btn-sm btn-warning"
+           href="{{ path('product_update', {'id': product.id}) }}">
+            Edit product
+        </a>
+        <a class="btn btn-sm btn-danger"
+           href="{{ path('product_delete', {'id': product.id}) }}">
+            Delete product
+        </a>
+    </p>
+    <table>
+        <tr>
+            <th># </th>
+            <td>{{ product.id }</td>
+        </tr>
+        <tr>
+            <th>Designation </th>
+            <td>{{ product.designation }}</td>
+            </tr>
+            <tr>
+            <th>Reference </th>
+            <td>{{ product.reference }}</td>
+            </tr>
+            <tr>
+            <th>Brand </th>
+            <td>{{ product.brand }}</td>
+            </tr>
+            <tr>
+            <th>Price </th>
+            <td>{{ product.price }}</td>
+            </tr>
+            <tr>
+            <th>Stock </th>
+            <td>{{ product.stock }}</td>
+            </tr>
+            
+            <tr>
+            <th>Description</th>
+            <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+            <th>Active</th>
+            <td>
+                {% if product.active %}
+                    <span class="badge badge-success">Oui</span>
+                {% else %}
+                    <span class="badge badge-danger">Non</span>
+                {% endif %}
+            </td>
+        </tr>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Products list</h1>
+    <p class="text-right">
+        <a class="btn btn-sm btn-success"
+            href="{{ path('product_create') }}">
+            New product
+        </a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Designation</th>
+            <th>Reference</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Description</th> 
+            <th>&nbsp;</th>
+            <th>Active</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>
+                <a href="{{ path('product_read', {'id': product.id}) }}">
+                    {{ product.designation }}
+                </a>
+            </td>
+            <td>{{ product.reference }}</td>
+            <td>{{ product.brand }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.active }}</td>
+            
+            <td>
+                {% if product.active %}
+                    <span class="badge badge-success">Yes</span>
+                {% else %}
+                    <span class="badge badge-danger">No</span>
+                {% endif %}
+            </td>
+            <td>
+                <a class="btn btn-sm btn-warning"
+                    href="{{ path('product_update', {'id': product.id}) }}">
+                    Edit
+                </a>
+                <a class="btn btn-sm btn-danger"
+                    href="{{ path('product_delete', {'id': product.id}) }}">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="9">                
+                No products registered
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
